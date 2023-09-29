@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Read Dictionary Entries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 60%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Style for the navbar */
+        .navbar {
+            display: flex;
+            background-color: #333; /* Background color for the navbar */
+            padding: 10px; /* Padding around navbar items */
+            justify-content: space-around; /* Distribute items evenly */
+            align-items: center; /* Center items vertically */
+        }
+
+        /* Style for the navbar items */
+        .navbar div {
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        /* Hover effect for navbar items */
+        .navbar div:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for the navbar */
+        .navbar {
+            display: flex;
+            background-color: #333; /* Background color for the navbar */
+            padding: 10px; /* Padding around navbar items */
+            justify-content: space-around; /* Distribute items evenly */
+            align-items: center; /* Center items vertically */
+        }
+
+        /* Style for the navbar items */
+        .navbar div {
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        /* Hover effect for navbar items */
+        .navbar div:hover {
+            background-color: #555; /* Background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div><a href="./index.html"> Homepage </a></div>
+        <div><a href="./create.html"> Create </a></div>
+        <div><a href="./delete.html"> Delete </a></div>
+        <div><a href="../templates/read.html"> Show list </a></div>
+    </div>
+    <h1>Dictionary Entries</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="entries-table">
+            <!-- Data will be displayed here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch data from the server and populate the table
+        fetch('http://127.0.0.1:5000/getentries')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                const entriesTable = document.getElementById('entries-table');
+
+                for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+        const value = data[key];
+
+        const row = document.createElement('tr');
+
+        const keyCell = document.createElement('td');
+        keyCell.textContent = key;
+
+        const valueCell = document.createElement('td');
+        valueCell.textContent = value;
+
+        row.appendChild(keyCell);
+        row.appendChild(valueCell);
+
+        entriesTable.appendChild(row);
+    }
+}
+            })
+            .catch(error => {
+                console.error("An error occurred:", error);
+            });
+    </script>
+</body>
+</html>

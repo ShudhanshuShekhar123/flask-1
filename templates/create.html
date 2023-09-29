@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Dictionary Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center; /* Center the h1 */
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            width: 50%; /* Set the form width to 50% */
+            margin: 0 auto; /* Center the form horizontally */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 85%; /* Set the input width to 85% */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            /* Center-align the button */
+            display: block;
+            margin: 0 auto;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for the navbar */
+        .navbar {
+            display: flex;
+            background-color: #333; /* Background color for the navbar */
+            padding: 10px; /* Padding around navbar items */
+            justify-content: space-around; /* Distribute items evenly */
+            align-items: center; /* Center items vertically */
+        }
+
+        /* Style for the navbar items */
+        .navbar div {
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        /* Hover effect for navbar items */
+        .navbar div:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for the navbar */
+        .navbar {
+            display: flex;
+            background-color: #333; /* Background color for the navbar */
+            padding: 10px; /* Padding around navbar items */
+            justify-content: space-around; /* Distribute items evenly */
+            align-items: center; /* Center items vertically */
+        }
+
+        /* Style for the navbar items */
+        .navbar div {
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        /* Hover effect for navbar items */
+        .navbar div:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div><a href="../templates/index.html"> Homepage </a></div>
+        <div><a href="../templates/create.html"> Create </a></div>
+        <div><a href="../templates/delete.html"> Delete </a></div>
+        <div><a href="../templates/read.html"> Show list </a></div>
+    </div>
+    <h1>Create a New Dictionary Entry</h1>
+    <!-- <form method="POST" action="/add_entry">
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key" required><br><br>
+
+        <label for="value">Value:</label>
+        <input type="text" id="value" name="value" required><br><br>
+
+        <input type="submit" value="Create Entry">
+    </form> -->
+    <form  method="post" id="create-form"> <!-- Add an ID to the form for easier selection -->
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key" required><br><br>
+
+        <label for="value">Value:</label>
+        <input type="text" id="value" name="value" required><br><br>
+
+        <input type="submit" value="Create Entry">
+    </form>
+
+    <script>
+        // Add an event listener to the form for form submission
+        document.getElementById('create-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Get the user input values
+            const key = document.getElementById('key').value;
+            const value = document.getElementById('value').value;
+
+            // Create a data object to send in the POST request
+            const data = {
+                key: key,
+                value: value
+            };
+
+            console.log(data, "here data")
+
+            // Make a POST request to the /create route using fetch
+            fetch('http://127.0.0.1:5000/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                // if (response.status === 200) {
+                //     // console.log("POST request to /create was successful.");
+                       
+                //     // Optionally, you can redirect to another page or show a success message here
+                // } else {
+                //     console.error(`POST request to /create failed with status code ${response.status}.`);
+                // }
+                return response.json()
+            })
+            .then((data)=>{
+                alert("added entry successfully!!")
+                console.log(data)
+            })
+            .catch(error => {
+                console.error("An error occurred:", error);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- my_env\Scripts\activate  -->

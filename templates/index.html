@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset some default styles */
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for the navbar */
+        .navbar {
+            display: flex;
+            background-color: #333; /* Background color for the navbar */
+            padding: 10px; /* Padding around navbar items */
+            justify-content: space-around; /* Distribute items evenly */
+            align-items: center; /* Center items vertically */
+        }
+
+        /* Style for the navbar items */
+        .navbar div {
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        /* Hover effect for navbar items */
+        .navbar div:hover {
+            background-color: #555; /* Background color on hover */
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div><a href="index.html"> Homepage </a></div>
+        <div><a href="./create.html"> Create </a></div>
+        <div><a href="./delete.html"> Delete </a></div>
+        <div><a href="./read.html"> Show list </a></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input and Button</title>
+    <style>
+        /* Container for input and button */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Style for the input */
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        /* Style for the button */
+        button {
+            padding: 10px 20px;
+            background-color: #db3434;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect for the button */
+        button:hover {
+            background-color: #b92929;
+        }
+
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for the navbar */
+        .navbar {
+            display: flex;
+            background-color: #333; /* Background color for the navbar */
+            padding: 10px; /* Padding around navbar items */
+            justify-content: space-around; /* Distribute items evenly */
+            align-items: center; /* Center items vertically */
+            margin-bottom: 100px;
+        }
+
+        /* Style for the navbar items */
+        .navbar div {
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        /* Hover effect for navbar items */
+        .navbar div:hover {
+            background-color: #555; /* Background color on hover */
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div><a href="index.html"> Homepage </a></div>
+        <div><a href="./create.html"> Create </a></div>
+        <div><a href="./delete.html"> Delete </a></div>
+        <div><a href="./read.html"> Show list </a></div>
+    </div>
+    <div class="container">
+        <h1>Enter the key to Delete</h1>
+        <input type="text" placeholder="Enter text">
+        <button onclick="handleDeleteClick()">Delete</button>
+    </div>
+</body>
+</html>
+<script>
+    // Function to handle the button click event
+    function handleDeleteClick() {
+        // Get the input value (ID)
+        const id = document.querySelector('input[type="text"]').value;
+
+        // Construct the URL with the ID as a query parameter
+        const url = `http://127.0.0.1:5000/delete?id=${id}`;
+
+        // Make a DELETE request to the URL
+        fetch(url, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Item deleted successfully.');
+                // You can add additional logic here if needed.
+            } else {
+                alert('Error deleting item.');
+                // Handle error cases here.
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while deleting.');
+        });
+    }
+</script>
